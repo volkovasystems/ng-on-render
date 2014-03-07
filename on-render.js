@@ -7,8 +7,9 @@ try{ var base = window; }catch( error ){ var base = exports; }
 		],
 		function construct( ){
 			var onRender = function onRender( $timeout, element, handler ){
-				$timeout( function subHandler( ){
+				var timeout = $timeout( function subHandler( ){
 					$( element ).ready( handler );
+					$timeout.cancel( timeout );
 				}, 0 );
 			};
 			base.onRender = onRender;
